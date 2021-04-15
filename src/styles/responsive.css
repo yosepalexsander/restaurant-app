@@ -1,17 +1,12 @@
-@media screen and (min-width: 499px) {
-  .header__menu {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 499px) {
+@media screen and (max-width: 600px) {
   .nav {
     position: fixed;
     top: 0;
     right: 0;
-    background-color: #fed049;
+    background-color: var(--primary);
     border-radius: 6px 0 0 0;
     width: 300px;
+    height: 100%;
     z-index: 5;
 
     -webkit-transform: translate(300px, 0);
@@ -24,6 +19,7 @@
     display: list-item;
     width: 100%;
     border-bottom: 1px solid;
+    padding: 16px;
     text-align: left;
   }
 
@@ -33,22 +29,20 @@
   }
 }
 
-@media screen and (min-width: 455px) {
+@media screen and (max-width: 600px) {
   .hero__title {
-    color: #fff;
     font-weight: 600;
     font-size: 24px;
   }
 
   .hero__tagline {
-    color: #fff;
     margin-top: 16px;
     font-size: 14px;
     font-weight: 400;
   }
 }
 
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 600px) {
   .header__menu {
     display: none;
   }
@@ -71,12 +65,14 @@
 
 @media screen and (min-width: 900px) {
   .hero {
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    padding: 0 36px;
+    min-height: 460px;
   }
   .hero__content {
     padding: 16px 32px;
+  }
+  .hero__tagline {
+    font-size: 24px;
   }
 }
 @media screen and (min-width: 1200px) {

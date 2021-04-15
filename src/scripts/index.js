@@ -29,13 +29,18 @@ window.addEventListener("DOMContentLoaded", function (event) {
        return `
        <article id="restaurant-item" class="card">
         <div class="card-image">
-          <img id="restaurant-item-thumbnail" src=${restaurant.pictureId}/>
+          <img id="restaurant-item-thumbnail" src=${restaurant.pictureId} alt=${
+         restaurant.name
+       }/>
           <span class="card-label">${restaurant.city}</span>
         </div>
         <div id="restaurant-item-content" class="card-content">
         <p class="card-header">Rating: ${restaurant.rating}</p>
             <p class="card-title">${restaurant.name}</p>
-            <p class="card-description">${restaurant.description}</p>
+            <p class="card-description">${restaurant.description.substr(
+              0,
+              150
+            )}...</p>
         </div>
        </article>
        `;

@@ -1,3 +1,9 @@
+:root {
+  --primary: #fed049;
+  --secondary: #282846;
+  --textSecondary: #424242;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -15,7 +21,7 @@ html {
 body {
   font-family: "Montserrat", sans-serif;
   font-size: 16px;
-  color: #424242;
+  color: #2a2a2a;
 }
 
 img {
@@ -35,11 +41,11 @@ ul > li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  min-height: 60px;
-  padding: 0 18px;
+  min-height: 70px;
+  padding: 0 24px;
   transition: min-height 0.3s ease-out;
-  background-color: #fed049;
-  color: #282846;
+  background-color: var(--primary);
+  color: var(--secondary);
 }
 
 .header__brand {
@@ -54,14 +60,22 @@ ul > li {
   display: inline-block;
   text-align: center;
   line-height: 24px;
-  padding: 16px;
+  padding: 0 12px;
+
   text-transform: uppercase;
 }
 
 .nav__item > a {
-  color: #282846;
+  color: var(--secondary);
   font-weight: 600;
 }
+
+a:focus {
+  color: var(--primary);
+  background-color: var(--secondary);
+  padding: 10px;
+}
+
 /* hero */
 
 .hero {
@@ -74,11 +88,12 @@ ul > li {
   text-align: center;
   background-image: linear-gradient(
       to bottom,
-      rgba(255, 206, 58, 0.5),
-      rgba(254, 209, 73, 0.479)
+      rgba(255, 206, 58, 0.9),
+      rgba(254, 209, 73, 0.5)
     ),
     url("../public//images/heros/hero-image_2.jpg");
   background-position: center;
+  color: var(--secondary);
   background-size: cover;
 }
 
@@ -88,13 +103,11 @@ ul > li {
 }
 
 .hero__title {
-  color: #fff;
   font-weight: 500;
-  font-size: 36px;
+  font-size: 32px;
 }
 
 .hero__tagline {
-  color: #fff;
   margin-top: 16px;
   font-size: 18px;
   font-weight: 400;
@@ -117,7 +130,7 @@ main {
 
 .content__label {
   text-align: center;
-  font-weight: 400;
+  font-weight: 600;
   font-size: 24px;
   line-height: 1.5;
 }
@@ -130,7 +143,7 @@ main {
 }
 .card {
   overflow: hidden;
-  border: 1px solid rgb(26, 25, 25);
+  border: 1px solid var(--secondary);
   border-radius: 5px;
 }
 .card-image {
@@ -145,9 +158,9 @@ main {
   position: absolute;
   top: 10px;
   left: 0;
-  background-color: #282846;
+  background-color: var(--secondary);
   border-radius: 0 5px 5px 0;
-  color: #fed049;
+  color: var(--primary);
   padding: 16px 24px 16px 16px;
   z-index: 2;
 }
@@ -163,11 +176,37 @@ main {
 }
 .card-title {
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
   margin-top: 12px;
 }
 
 .card-description {
   margin-top: 12px;
   line-height: 1.2;
+}
+
+/* footer */
+
+footer {
+  border-top: 1px solid #424242;
+  font-weight: 600;
+  padding: 24px;
+  text-align: center;
+}
+
+/* skip link */
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background-color: var(--secondary);
+  color: var(--primary);
+  padding: 8px;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 0;
 }
