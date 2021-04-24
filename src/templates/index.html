@@ -10,19 +10,27 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
       rel="stylesheet"
     />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <script src="https://use.fontawesome.com/b070c8f1df.js"></script>
     <title>Hunger Apps</title>
   </head>
   <body>
-    <a href="#maincontent" class="skip-link">Menuju ke konten utama</a>
+    <a href="#mainContent" class="skip-link">Menuju ke konten utama</a>
     <header class="header">
       <h1 class="header__brand">Hunger Apps</h1>
-      <a id="menu" class="header__menu">☰</a>
+        <button id="menuButton" class="header__menu" aria-label="navigation menu">☰</button>
       <nav id="drawer" class="nav">
         <ul class="nav__list">
           <li class="nav__item"><a href="/">Home</a></li>
-          <li class="nav__item"><a href="#">Favorite</a></li>
+          <li class="nav__item"><a href="#/favorites">Favorite</a></li>
           <li class="nav__item">
-            <a href="https://linkedin.com/in/yosep-alexsander">About Us</a>
+            <a
+              href="https://linkedin.com/in/yosep-alexsander"
+              target="_blank"
+              rel="noopener noreferrer"
+              >About Us</a
+            >
           </li>
         </ul>
       </nav>
@@ -36,11 +44,7 @@
         You'll find here!
       </p>
     </section>
-    <main id="maincontent">
-      <section class="content">
-        <p class="content__label">Explore Restaurant</p>
-        <div class="restaurants"></div>
-      </section>
+    <main id="mainContent" class="content">
     </main>
     <footer>
       <p>Copyright ©2021 - Hunger Apps</p>

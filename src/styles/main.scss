@@ -1,0 +1,237 @@
+@import 'variables';
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  color: map-get($theme-color, 'textPrimary');
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  color: map-get($theme-color, 'secondary');
+  text-decoration: none;
+}
+
+a:focus {
+  color: map-get($theme-color, 'primary');
+  background-color: map-get($theme-color, 'secondary');
+  outline: 0;
+  text-align: center;
+}
+
+ul > li {
+  list-style: none;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 70px;
+  padding: 0 24px;
+  transition: min-height 0.3s ease-out;
+  background-color: map-get($theme-color, 'primary');
+  color: map-get($theme-color, 'secondary');
+
+  &__brand {
+    flex: 1 0 auto;
+  }
+
+  &__menu {
+    font-weight: 600;
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    line-height: 50px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+  }
+}
+
+.nav__item {
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+  padding-left: 12px;
+  text-transform: uppercase;
+
+  & a {
+    display: inline-block;
+    vertical-align: middle;
+    width: 90px;
+    font-weight: 600;
+    line-height: 90px;
+    transition-property: background-color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-out;
+  }
+}
+
+/* hero */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 380px;
+  width: 100%;
+  padding: 0 24px;
+  text-align: center;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(255, 206, 58, 0.9),
+      rgba(254, 209, 73, 0.5)
+    ),
+    url("../public//images/heros/hero-image_2.jpg");
+  background-position: center;
+  color: map-get($theme-color, 'secondary');
+  background-size: cover;
+
+  &__inner {
+    margin: 0 auto;
+    max-width: 800px;
+  }
+  
+  &__title {
+    font-weight: 500;
+    font-size: 32px;
+  }
+
+  &__tagline {
+    margin-top: 16px;
+    font-size: 18px;
+    font-weight: 400;
+  }
+}
+
+/*
+* main 
+*/
+
+main {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 
+* content 
+*/
+.content {
+  padding: 32px;
+  
+  &__label {
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.5;
+  }
+}
+
+.restaurants {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  overflow: hidden;
+  border: 1px solid map-get($theme-color, 'secondary');
+  border-radius: 5px;
+  
+  &__image {
+    position: relative;
+
+    & img {
+      height: 250px;
+      object-fit: cover;
+    }
+
+    & span {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      background-color: map-get($theme-color, 'secondary');
+      border-radius: 0 5px 5px 0;
+      color: map-get($theme-color, 'primary');
+      padding: 16px 24px 16px 16px;
+      z-index: 2;
+    }
+  }
+
+  &__content {
+    padding: 16px 24px;
+  }
+
+  &__header {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 12px;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 12px;
+  }
+
+  &__description {
+    margin-top: 12px;
+    font-family: 'Source Sans Pro', sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-box-orient: vertical;
+  }
+}
+
+/* footer */
+
+footer {
+  border-top: 1px solid #424242;
+  font-weight: 600;
+  padding: 24px;
+  text-align: center;
+}
+
+/* skip link */
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background-color: map-get($theme-color, 'secondary');
+  color: map-get($theme-color, 'primary');
+  padding: 8px;
+  z-index: 100;
+
+  &:focus {
+    top: 0;
+    outline: 0;
+  }
+}
+
+// icon
+.icon-gold {
+  color: map-get($theme-color, 'primary');
+}

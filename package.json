@@ -17,7 +17,9 @@
     "babel-loader": "^8.1.0",
     "copy-webpack-plugin": "^6.0.3",
     "css-loader": "^3.6.0",
-    "eslint": "^7.4.0",
+    "eslint": "^7.24.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.3.1",
     "jasmine-ajax": "^4.0.0",
@@ -28,6 +30,8 @@
     "karma-jasmine": "^3.3.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^4.0.2",
+    "sass": "^1.32.11",
+    "sass-loader": "^11.0.1",
     "style-loader": "^1.2.1",
     "webpack": "^5.31.2",
     "webpack-cli": "^4.6.0",
@@ -36,6 +40,7 @@
     "whatwg-fetch": "^3.2.0"
   },
   "dependencies": {
+    "idb": "^6.0.0",
     "regenerator-runtime": "^0.13.5"
   }
 }
