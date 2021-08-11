@@ -1,12 +1,14 @@
 import 'regenerator-runtime'; /* for async await transpile */
 import '../styles/main.scss';
 import '../styles/responsive.scss';
-import App from './app';
+import './views/components/AppBar';
+import App from './views/app';
+import swRegister from './utils/swRegister';
 
 const app = new App({
   button: document.getElementById('menuButton'),
   drawer: document.getElementById('drawer'),
-  content: document.getElementById('mainContent'),
+  content: document.getElementById('app'),
 });
 
 window.addEventListener('hashchange', async () => {
@@ -15,4 +17,5 @@ window.addEventListener('hashchange', async () => {
 
 window.addEventListener('load', async () => {
   await app.renderPage();
+  await swRegister();
 });

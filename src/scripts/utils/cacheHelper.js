@@ -2,7 +2,7 @@ import CONFIG from '../globals/config';
 
 class CacheHelper {
   static async cachingAppShell(requests) {
-    const cache = await this.openCache();
+    const cache = await this._openCache();
     cache.addAll(requests);
   }
 
@@ -12,26 +12,26 @@ class CacheHelper {
     if (response) {
       return response;
     }
-    return this.fetchRequest(request);
+    return this._fetchRequest(request);
   }
 
-  static async fetchRequest(request) {
+  static async _fetchRequest(request) {
     const response = await fetch(request);
     if (!response || response.status !== 200) {
       return response;
     }
 
-    await this.addCache(request);
+    await this._addCache(request);
     return response;
   }
 
-  static async openCache() {
+  static async _openCache() {
     return caches.open(CONFIG.CACHE_NAME);
   }
 
-  static async addCache(request) {
+  static async _addCache(request) {
     try {
-      const cache = await this.openCache();
+      const cache = await this._openCache();
       cache.add(request);
     } catch (error) {
       console.error(error);

@@ -1,6 +1,6 @@
-import routes from './routes';
-import UrlParser from './routes/urlParser';
-import DrawerInitiator from './utils/drawerInitiator';
+import routes from '../routes';
+import UrlParser from '../routes/urlParser';
+import DrawerInitiator from '../utils/drawerInitiator';
 
 class App {
   constructor({ button, drawer, content }) {
@@ -22,7 +22,12 @@ class App {
   async renderPage() {
     const url = UrlParser.parseActiveUrlWithCombiner();
     const page = routes[url];
-    this._content.appendChild(await page);
+    if (this._content.hasChildNodes()) {
+      this._content.innerHTML = '';
+      this._content.appendChild(await page);
+    } else {
+      this._content.appendChild(await page);
+    }
   }
 }
 

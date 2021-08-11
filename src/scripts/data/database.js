@@ -10,7 +10,7 @@ const dbPromise = openDB(DATABASE_NAME, DATABASE_VERSION, {
 });
 
 class FavoriteRestaurant {
-  static async getAllMRestaurants() {
+  static async getAllRestaurants() {
     return (await dbPromise).getAll(OBJECT_STORE_NAME);
   }
 
@@ -18,11 +18,8 @@ class FavoriteRestaurant {
     return (await dbPromise).get(OBJECT_STORE_NAME, id);
   }
 
-  static async addRestaurant(restaurant) {
-    return (await dbPromise).add(OBJECT_STORE_NAME, restaurant);
-  }
-
-  static async updateRestaurant(restaurant) {
+  static async putRestaurant(restaurant) {
+    if (!Object.prototype.hasOwnProperty.call(restaurant, 'id')) return undefined;
     return (await dbPromise).put(OBJECT_STORE_NAME, restaurant);
   }
 

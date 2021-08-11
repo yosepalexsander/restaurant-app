@@ -1,11 +1,11 @@
-import '../views/pages/Detail';
-import '../views/pages/Favorites';
 import '../views/pages/Home';
+import '../views/pages/Favorites';
+import '../views/pages/Detail';
 
 const routes = {
   '/': document.createElement('home-page'),
   '/detail/:id': document.createElement('restaurant-detail'),
-  '/favorites': document.createElement('list-favorites'),
+  '/favorites': document.createElement('favorites-page'),
 };
 
 export default routes;

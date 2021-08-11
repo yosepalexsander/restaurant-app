@@ -15,7 +15,7 @@ class RestaurantSource {
   static async getRestaurantDetail(id) {
     try {
       const response = await fetch(API_ENDPOINT.RESTAURANT(id));
-      const data = response.json();
+      const data = await response.json();
       return data.restaurant;
     } catch (error) {
       console.error(error);

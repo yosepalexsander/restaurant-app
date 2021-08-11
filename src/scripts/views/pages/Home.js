@@ -4,18 +4,34 @@ class Home extends HTMLElement {
   constructor() {
     super();
     this.render = this.render.bind(this);
-    this.loading = true;
   }
 
   async connectedCallback() {
-    return this.render();
+    await this.render();
   }
 
-  render() {
+  attributeChangedCallback() {
+    this.render();
+  }
+
+  async render() {
     this.innerHTML = `
-    <h2>Hunger...</h2>
-    <p class="content__label">Explore Restaurant</p>
-    <list-restaurant></list-restaurant>
+    <section class="hero">
+      <h2 class="hero__title">
+        <strong>Welcome Foodholic!!</strong>
+      </h2>
+      <p class="hero__tagline">
+        Have you find your favorite restaurant? if not, don't worry about it
+        You'll find here!
+      </p>
+    </section>
+    <main id="mainContent" class="content">
+      <p class="content__label">Explore Restaurant</p>
+      <list-restaurant isFrom="home"></list-restaurant>
+    </main>
+    <footer>
+      <p>Copyright ©2021 - Hunger Apps</p>
+    </footer>
     `;
   }
 }
