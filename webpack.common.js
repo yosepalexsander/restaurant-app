@@ -89,6 +89,5 @@ module.exports = {
     new WorkboxPlugin.InjectManifest({
       swSrc: './src/scripts/serviceWorker.js',
     }),
-    new BundleAnalyzerPlugin(),
   ],
 };
