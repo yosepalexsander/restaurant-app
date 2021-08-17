@@ -7,12 +7,12 @@
   box-sizing: border-box;
 }
 
-::-webkit-scrollbar {
+html::-webkit-scrollbar {
   width: 10px;
   background: transparent;
 }
 /* Optional: show position indicator in red */
-::-webkit-scrollbar-thumb {
+html::-webkit-scrollbar-thumb {
     background: map-get($theme-color, 'secondary');
     border-radius: 5px;
 }
@@ -48,14 +48,16 @@ ul > li {
 
 .header {
   display: flex;
+  position: relative;
   justify-content: space-between;
   align-items: center;
   width: 100%;
   min-height: 70px;
   padding: 0 24px;
   transition: min-height 0.3s ease-out;
-  background-color: map-get($theme-color, 'primary');
+  background-color: rgb(250, 250, 250);
   color: map-get($theme-color, 'secondary');
+  box-shadow: 0 2px 4px 2px #91909071;
   z-index: 10;
   &__brand {
     flex: 1 0 auto;
@@ -110,28 +112,29 @@ ul > li {
   text-align: center;
   background-image: linear-gradient(
       to bottom,
-      rgba(255, 206, 58, 0.9),
-      rgba(254, 209, 73, 0.5)
+      rgba(250, 250, 250, 0.9),
+      rgba(250, 250, 250, 0.6)
     ),
     url("../public//images/heros/hero-image_2.jpg");
   background-position: center;
-  color: map-get($theme-color, 'secondary');
   background-size: cover;
-
   &__inner {
     margin: 0 auto;
     max-width: 800px;
+    
   }
   
   &__title {
-    font-weight: 500;
+    font-weight: 900;
     font-size: 32px;
+    color: map-get($theme-color, 'secondary');
   }
 
   &__tagline {
     margin-top: 16px;
     font-size: 18px;
-    font-weight: 400;
+    font-weight: 600;
+    color: map-get($theme-color, 'secondary');
   }
 }
 
@@ -162,6 +165,20 @@ main {
       margin: 0 auto 16px;
     }
   }
+
+  & .not__found {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    & p, a {
+      margin-bottom: 10px;
+    }
+    & a {
+      font-weight: 600;
+    }
+  }
 }
 
 .restaurants {
@@ -179,8 +196,12 @@ main {
   transition-duration: 0.3s;
   transition-timing-function: linear;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     box-shadow: 1px 2px 3px 3px #424242af;
+  }
+
+  & a {
+    color: #1d1d1d;
   }
 
   &__image {
@@ -201,6 +222,11 @@ main {
       padding: 16px 24px 16px 16px;
       z-index: 2;
     }
+
+    &:empty {
+      background-color: lightgrey;
+      height: 250px;
+    }
   }
 
   &__content {
@@ -212,15 +238,34 @@ main {
     font-weight: 600;
     line-height: 1.5;
     margin-top: 12px;
+
+    &:empty {
+      display: block;
+      width: 40%;
+      border-radius: 5px;
+      background-color: lightgrey;
+      &:before {
+        content: "\00a0";
+      }
+    }
   }
 
   &__title {
     font-weight: 600;
     font-size: 20px;
     margin-top: 12px;
+    &:empty {
+      display: block;
+      width: 70%;
+      border-radius: 5px;
+      background-color: lightgrey;
+      &:before {
+        content: "\00a0";
+      }
+    }
   }
 
-  &__description {
+  &__text {
     margin-top: 12px;
     font-family: 'Source Sans Pro', sans-serif;
     overflow: hidden;
@@ -228,9 +273,21 @@ main {
     display: -webkit-box;
     -webkit-line-clamp: 4; /* number of lines to show */
     -webkit-box-orient: vertical;
+    &:empty {
+      background-color: lightgrey;
+      transform: scale(1, 0.7);
+      margin-top: 8px;
+      border-radius: 5px;
+      &:nth-last-of-type(1) {
+        width: 70%;
+      }
+
+      &:before {
+        content: "\00a0";
+      }
+    }
   }
 }
-
 /* detail restaurant */
 .restaurant {
   margin: 0 auto;
@@ -404,5 +461,28 @@ footer {
     height: 60px;
     width: 60px;
     border-radius: 10px;
+  }
+}
+
+// skeleton animation
+.skeleton {
+  &__wave {
+    overflow: hidden;
+    position: relative;
+    &::after {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: "";
+      position: absolute;
+      animation: wave 1.6s linear 0.5s infinite;
+      transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
+    }
+
+  }
+  @keyframes wave {
+    to  {transform: translateX(100%)}
   }
 }

@@ -41,7 +41,7 @@ export default class LikeFAB extends HTMLElement {
   }
 
   async connectedCallback() {
-    const id = parseInt(this.getAttribute('restaurant-id'), 10);
+    const id = this.getAttribute('restaurant-id');
     if (await this._isRestaurantFavorites(id)) {
       this.liked = true;
     } else {
@@ -55,7 +55,7 @@ export default class LikeFAB extends HTMLElement {
       await this._favoriteRestaurantDB.putRestaurant(this._restaurant);
       this.liked = true;
     } catch (error) {
-      console.error(error);
+      console.error('error: ', error);
     }
   }
 
@@ -64,7 +64,7 @@ export default class LikeFAB extends HTMLElement {
       await this._favoriteRestaurantDB.deleteRestaurant(this._restaurant.id);
       this.liked = false;
     } catch (error) {
-      console.error('error', error);
+      console.error('error: ', error);
     }
   }
 

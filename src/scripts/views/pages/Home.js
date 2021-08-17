@@ -17,9 +17,7 @@ class Home extends HTMLElement {
   async render() {
     this.innerHTML = `
     <section class="hero">
-      <h2 class="hero__title">
-        <strong>Welcome Foodholic!!</strong>
-      </h2>
+      <h2 class="hero__title">Welcome Foodholic!!</h2>
       <p class="hero__tagline">
         Have you find your favorite restaurant? if not, don't worry about it
         You'll find here!
