@@ -1,31 +1,39 @@
-import CacheHelper from './utils/cacheHelper';
+/* eslint-disable no-undef */
+importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.4/workbox-sw.js');
 
 /* eslint-disable no-restricted-globals */
-const assetsToCache = [
-  '/',
-  'favicon.png',
-  '/manifest.json',
-  '/icons/icon-72x72.png',
-  '/icons/icon-96x96.png',
-  '/icons/icon-144x144.png',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png',
-  '/app.js',
-  '/index.html',
-];
-
-self.addEventListener('install', (event) => {
-  console.log('Installing service worker....');
-  event.waitUntil(
-    CacheHelper.cachingAppShell(assetsToCache),
+workbox.setConfig({
+  debug: false,
+});
+if (workbox) {
+  console.log('Workbox load successfully');
+  workbox.precaching.precacheAndRoute(self.__WB_MANIFEST);
+  workbox.routing.registerRoute(
+    /^https:\/\/restaurant-api\.dicoding\.dev/,
+    new workbox.strategies.StaleWhileRevalidate({
+      cacheName: 'dicoding-resources-restaurant-api',
+    }),
   );
-});
 
-self.addEventListener('activate', (event) => {
-  console.log('Activating service worker...');
-  event.waitUntil(CacheHelper.deleteOldCache());
-});
-
-self.addEventListener('fetch', (event) => {
-  event.respondWith(CacheHelper.revalidateCache(event.request));
-});
+  workbox.routing.registerRoute(
+    ({ url }) => url.origin === 'https://fonts.gstatic.com'
+                 || url.origin === 'https://fonts.googleapis.com',
+    //  || url.origin === 'https://stackpath.bootstrapcdn.com',
+    new workbox.strategies.StaleWhileRevalidate({
+      cacheName: 'font',
+      plugins: [
+        new workbox.expiration.ExpirationPlugin({
+          maxEntries: 10,
+        }),
+      ],
+    }),
+  );
+  workbox.routing.registerRoute(
+    /\.(?:png|gif|jpg|jpeg|svg)$/,
+    new workbox.strategies.CacheFirst({
+      cacheName: 'image cache',
+    }),
+  );
+} else {
+  console.log('Workbox load failed');
+}

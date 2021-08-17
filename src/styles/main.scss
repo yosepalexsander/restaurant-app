@@ -114,10 +114,16 @@ ul > li {
       to bottom,
       rgba(250, 250, 250, 0.9),
       rgba(250, 250, 250, 0.6)
-    ),
-    url("../public//images/heros/hero-image_2.jpg");
+    );
   background-position: center;
   background-size: cover;
+
+  &__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
   &__inner {
     margin: 0 auto;
     max-width: 800px;

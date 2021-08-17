@@ -71,7 +71,7 @@ class Detail extends HTMLElement {
       <section id="restaurantDetail" class="content">
         <div class="restaurant">
           <h2 class="restaurant__title">${this.restaurant.name}</h2>
-          <img class="restaurant__image" src=${CONFIG.BASE_MEDUM_IMAGE_URL + this.restaurant.pictureId} alt=${this.restaurant.name} />
+          <img class="lazyload restaurant__image" data-src=${CONFIG.BASE_MEDUM_IMAGE_URL + this.restaurant.pictureId} data-sizes="auto" alt=${this.restaurant.name} />
           <div class="restaurant__info">
               <div class="address">
                 <p>Address</p>
@@ -128,7 +128,6 @@ class Detail extends HTMLElement {
           review,
         };
         const response = await Detail.submitReview(data);
-        console.log(response);
         if (response.message === 'success') {
           this.restaurant.customerReviews = response.customerReviews;
           this.render();

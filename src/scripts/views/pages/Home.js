@@ -17,6 +17,7 @@ class Home extends HTMLElement {
   async render() {
     this.innerHTML = `
     <section class="hero">
+      <img class="lazyload hero__img" data-src="/images/hero-image_2.jpg" data-sizes="auto" alt="hero" />
       <h2 class="hero__title">Welcome Foodholic!!</h2>
       <p class="hero__tagline">
         Have you find your favorite restaurant? if not, don't worry about it

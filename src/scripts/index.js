@@ -5,6 +5,9 @@ import './views/components/AppBar';
 import App from './views/app';
 import swRegister from './utils/swRegister';
 
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
+
 const app = new App({
   button: document.getElementById('menuButton'),
   drawer: document.getElementById('drawer'),
