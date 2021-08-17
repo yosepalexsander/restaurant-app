@@ -3,7 +3,7 @@
   "short_name": "Foodways",
   "description": "Restaurant digital for you food holic",
   "scope": "/",
-  "start_url": ".",
+  "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#fed049",
   "theme_color": "#fed049",

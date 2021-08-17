@@ -41,7 +41,7 @@ export default class LikeFAB extends HTMLElement {
   }
 
   async connectedCallback() {
-    const id = parseInt(this.getAttribute('restaurant-id'), 10);
+    const id = this.getAttribute('restaurant-id');
     if (await this._isRestaurantFavorites(id)) {
       this.liked = true;
     } else {

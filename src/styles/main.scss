@@ -162,6 +162,20 @@ main {
       margin: 0 auto 16px;
     }
   }
+
+  & .not__found {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    & p, a {
+      margin-bottom: 10px;
+    }
+    & a {
+      font-weight: 600;
+    }
+  }
 }
 
 .restaurants {
@@ -173,13 +187,14 @@ main {
 
 .card {
   overflow: hidden;
+  // height: 452px;
   border: 1px solid map-get($theme-color, 'secondary');
   border-radius: 5px;
   transition-property: transform;
   transition-duration: 0.3s;
   transition-timing-function: linear;
   &:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
     box-shadow: 1px 2px 3px 3px #424242af;
   }
 
@@ -201,6 +216,11 @@ main {
       padding: 16px 24px 16px 16px;
       z-index: 2;
     }
+
+    &:empty {
+      background-color: lightgrey;
+      height: 250px;
+    }
   }
 
   &__content {
@@ -212,15 +232,34 @@ main {
     font-weight: 600;
     line-height: 1.5;
     margin-top: 12px;
+
+    &:empty {
+      display: block;
+      width: 40%;
+      border-radius: 5px;
+      background-color: lightgrey;
+      &:before {
+        content: "\00a0";
+      }
+    }
   }
 
   &__title {
     font-weight: 600;
     font-size: 20px;
     margin-top: 12px;
+    &:empty {
+      display: block;
+      width: 70%;
+      border-radius: 5px;
+      background-color: lightgrey;
+      &:before {
+        content: "\00a0";
+      }
+    }
   }
 
-  &__description {
+  &__text {
     margin-top: 12px;
     font-family: 'Source Sans Pro', sans-serif;
     overflow: hidden;
@@ -228,9 +267,21 @@ main {
     display: -webkit-box;
     -webkit-line-clamp: 4; /* number of lines to show */
     -webkit-box-orient: vertical;
+    &:empty {
+      background-color: lightgrey;
+      transform: scale(1, 0.7);
+      margin-top: 8px;
+      border-radius: 5px;
+      &:nth-last-of-type(1) {
+        width: 70%;
+      }
+
+      &:before {
+        content: "\00a0";
+      }
+    }
   }
 }
-
 /* detail restaurant */
 .restaurant {
   margin: 0 auto;
@@ -404,5 +455,28 @@ footer {
     height: 60px;
     width: 60px;
     border-radius: 10px;
+  }
+}
+
+// skeleton animation
+.skeleton {
+  &__wave {
+    overflow: hidden;
+    position: relative;
+    &::after {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: "";
+      position: absolute;
+      animation: wave 1.6s linear 0.5s infinite;
+      transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
+    }
+
+  }
+  @keyframes wave {
+    to  {transform: translateX(100%)}
   }
 }

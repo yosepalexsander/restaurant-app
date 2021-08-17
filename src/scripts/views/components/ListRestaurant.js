@@ -7,11 +7,11 @@ class ListRestaurant extends HTMLElement {
   constructor() {
     super();
     this.render = this.render.bind(this);
-    this._restaurants = null;
+    this._restaurants = [];
   }
 
   static get observedAttributes() {
-    return ['data', 'isFrom'];
+    return ['loading', 'isFrom'];
   }
 
   get loading() {
@@ -24,13 +24,14 @@ class ListRestaurant extends HTMLElement {
 
   async connectedCallback() {
     this.loading = true;
-    console.log(this.getAttribute('isFrom'));
     if (this.getAttribute('isFrom') === 'favorites') {
       this._restaurants = await FavoriteRestaurant.getAllRestaurants();
     } else {
       this._restaurants = await RestaurantSource.getRestaurants();
     }
-    this.loading = false;
+    setTimeout(() => {
+      this.loading = false;
+    }, 300);
     this.render();
   }
 
@@ -40,7 +41,42 @@ class ListRestaurant extends HTMLElement {
 
   render() {
     if (this.loading) {
-      this.innerHTML = '<div class="lds-dual-ring"></div>';
+      this.innerHTML = `
+      <section id="skeleton">
+        <div class="restaurants">
+          <div class="card">
+            <div class="card__image skeleton__wave"></div>
+            <div id="restaurant-item-content" class="card__content">
+              <span class="card__header skeleton__wave"></span>
+              <span class="card__title skeleton__wave"></span>
+              <span class="card__text skeleton__wave"></span>
+              <span class="card__text skeleton__wave"></span>
+              <span class="card__text skeleton__wave"></span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__image skeleton__wave"></div>
+            <div id="restaurant-item-content" class="card__content">
+              <span class="card__header skeleton__wave"></span>
+              <span class="card__title skeleton__wave"></span>
+              <span class="card__text skeleton__wave"></span>
+              <span class="card__text skeleton__wave"></span>
+              <span class="card__text skeleton__wave"></span>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card__image skeleton__wave"></div>
+            <div id="restaurant-item-content" class="card__content">
+              <span class="card__header skeleton__wave"></span>
+              <span class="card__title skeleton__wave"></span>
+              <span class="card__text skeleton__wave"></span>
+              <span class="card__text skeleton__wave"></span>
+              <span class="card__text skeleton__wave"></span>
+            </div>
+          </div>
+        </div>
+      </section>
+      `;
     } else {
       this.innerHTML = `
       <section id="restaurantsSection">
@@ -71,7 +107,7 @@ class ListRestaurant extends HTMLElement {
                 ${restaurant.rating}
                 </p>
                 <p class="card__title">${restaurant.name}</p>
-                <p class="card__description">${restaurant.description}</p>
+                <p class="card__text">${restaurant.description}</p>
               </div>
               </a>
             </div>

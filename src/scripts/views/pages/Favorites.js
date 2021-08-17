@@ -6,7 +6,7 @@ class Favorites extends HTMLElement {
   constructor() {
     super();
     this.render = this.render.bind(this);
-    this.restaurants = null;
+    this.restaurants = [];
   }
 
   static get observedAttributes() {
@@ -22,20 +22,41 @@ class Favorites extends HTMLElement {
   }
 
   async connectedCallback() {
-    this.restaurants = await FavoriteRestaurant.getAllRestaurants();
-    console.log(this.restaurants);
-    this.render();
+    try {
+      this.restaurants = await FavoriteRestaurant.getAllRestaurants();
+      this.loading = false;
+      this.render();
+    } catch (error) {
+      this.loading = false;
+      this.render();
+    }
+  }
+
+  attributeChangedCallback(_attrName, oldValue, newValue) {
+    if (newValue !== oldValue) {
+      this.render();
+    }
   }
 
   render() {
-    this.innerHTML = `
-    <section id="favoriteRestaurant" class="content">
-      <h2>Your favorites restaurant</h2>
-      <list-restaurant isFrom="favorites"></list-restaurant>
-    </section>
-    `;
-
-    this.querySelector('list-restaurant').data = this.restaurants;
+    if (this.restaurants.length > 0) {
+      this.innerHTML = `
+      <section id="favoriteRestaurant" class="content">
+        <h2>Your favorites restaurant</h2>
+        <list-restaurant isFrom="favorites"></list-restaurant>
+      </section>
+      `;
+    } else {
+      this.innerHTML = `
+      <section id="favoriteRestaurant" class="content">
+        <h2>Your favorites restaurant</h2>
+        <div class="not__found">
+          <p>There are no restaurants to show</p>
+          <a href="#/">Back to Home </a>
+        </div>
+      </section>
+      `;
+    }
   }
 }
 

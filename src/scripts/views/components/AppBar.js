@@ -15,8 +15,8 @@ class AppBar extends HTMLElement {
         <button id="menuButton" class="header__menu" aria-label="navigation menu">☰</button>
       <nav id="drawer" class="nav">
         <ul class="nav__list">
-          <li class="nav__item"><a href="/" class= "link">Home</a></li>
-          <li class="nav__item"><a href="#/favorites" class= "link">Favorite</a></li>
+          <li class="nav__item"><a href="/" class="link">Home</a></li>
+          <li class="nav__item"><a href="#/favorites" class="link">Favorite</a></li>
           <li class="nav__item">
             <a
               href="https://linkedin.com/in/yosep-alexsander"
