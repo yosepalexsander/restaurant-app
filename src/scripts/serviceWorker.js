@@ -18,7 +18,6 @@ if (workbox) {
   workbox.routing.registerRoute(
     ({ url }) => url.origin === 'https://fonts.gstatic.com'
                  || url.origin === 'https://fonts.googleapis.com',
-    //  || url.origin === 'https://stackpath.bootstrapcdn.com',
     new workbox.strategies.StaleWhileRevalidate({
       cacheName: 'font',
       plugins: [
@@ -31,7 +30,7 @@ if (workbox) {
   workbox.routing.registerRoute(
     /\.(?:png|gif|jpg|jpeg|svg)$/,
     new workbox.strategies.CacheFirst({
-      cacheName: 'image cache',
+      cacheName: 'image-cache',
     }),
   );
 } else {

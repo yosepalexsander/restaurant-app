@@ -5,7 +5,6 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const ImageminMozjpeg = require('imagemin-mozjpeg');
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const path = require('path');
@@ -29,8 +28,8 @@ module.exports = {
     splitChunks: {
       chunks: 'all',
       minSize: 20000,
-      maxSize: 60000,
-      minChunks: 2,
+      maxSize: 70000,
+      minChunks: 1,
       maxAsyncRequests: 30,
       maxInitialRequests: 30,
       enforceSizeThreshold: 50000,
@@ -42,7 +41,7 @@ module.exports = {
           reuseExistingChunk: true,
         },
         default: {
-          minChunks: 3,
+          minChunks: 2,
           priority: -20,
           reuseExistingChunk: true,
         },
