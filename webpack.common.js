@@ -5,6 +5,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const ImageminMozjpeg = require('imagemin-mozjpeg');
+const BundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const PurgecssPlugin = require('purgecss-webpack-plugin');
 const path = require('path');
@@ -19,7 +20,7 @@ module.exports = {
     app: path.resolve(__dirname, 'src/scripts/index.js'),
   },
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'build/'),
     filename: '[name].[contenthash].bundle.js',
     clean: true,
   },
@@ -29,7 +30,7 @@ module.exports = {
       chunks: 'all',
       minSize: 20000,
       maxSize: 70000,
-      minChunks: 1,
+      minChunks: 2,
       maxAsyncRequests: 30,
       maxInitialRequests: 30,
       enforceSizeThreshold: 50000,
@@ -87,6 +88,8 @@ module.exports = {
     }),
     new WorkboxPlugin.InjectManifest({
       swSrc: './src/scripts/serviceWorker.js',
+      swDest: 'serviceWorker.js',
     }),
+    new BundleAnalyzer(),
   ],
 };

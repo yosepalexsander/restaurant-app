@@ -7,7 +7,8 @@
     "start-dev": "webpack serve --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js",
     "test": "karma start",
-    "e2e": "codeceptjs run --steps"
+    "e2e": "codeceptjs run --steps",
+    "build-image": "node sharp.js"
   },
   "keywords": [],
   "author": "your_name <your.email@domain.com>",
@@ -39,6 +40,7 @@
     "purgecss-webpack-plugin": "^4.0.3",
     "sass": "^1.32.11",
     "sass-loader": "^11.0.1",
+    "sharp": "^0.29.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.31.2",
     "webpack-bundle-analyzer": "^4.4.2",

@@ -46,15 +46,15 @@ describe('Unliking a Restaurant', () => {
     }, 500);
   });
 
-  it('should not throw error if the unliked movie is not in the list', () => {
+  it('should not throw error if the unliked restaurant is not in the list', () => {
     // setTimeout used to wait custome element rendering first
     // because custom element have delay in rendering
     setTimeout(async () => {
-      await FavoriteMovieIdb.deleteMovie(1);
+      await FavoriteRestaurant.deleteRestaurant(1);
 
-      document.querySelector('[aria-label="unlike this movie"]').dispatchEvent(new Event('click'));
+      document.querySelector('[aria-label="unlike this restaurant"]').dispatchEvent(new Event('click'));
 
-      expect(await FavoriteMovieIdb.getAllMovies()).toEqual([]);
+      expect(await FavoriteRestaurant.getAllRestaurants()).toEqual([]);
     }, 500);
   });
 });

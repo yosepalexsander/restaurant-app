@@ -1,12 +1,8 @@
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', async () => {
-    try {
-      await navigator.serviceWorker.register('/serviceWorker.js');
-      console.log('Registration success');
-    } catch (err) {
-      console.log('Registration failed', err);
-    }
-  });
-} else {
-  console.log('sw not supported');
+export default async function swRegister() {
+  if ('serviceWorker' in navigator) {
+    await navigator.serviceWorker.register('/serviceWorker.js');
+    console.log('Registration success');
+  } else {
+    console.log('sw not supported');
+  }
 }

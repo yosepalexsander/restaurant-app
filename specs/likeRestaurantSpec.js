@@ -46,7 +46,7 @@ describe('Liking a Restaurant', () => {
     }, 500);
   });
 
-  it('should not add a movie again when its already liked', () => {
+  it('should not add a restaurant again when its already liked', () => {
     createLikeFAB({ id: 1 });
 
     // setTimeOut used to wait custome element rendering first
@@ -59,7 +59,7 @@ describe('Liking a Restaurant', () => {
     }, 500);
   });
 
-  it('should not add a movie when it has no id', async () => {
+  it('should not add a restaurant when it has no id', async () => {
     createLikeFAB({});
 
     // setTimeOut used to wait custome element rendering first

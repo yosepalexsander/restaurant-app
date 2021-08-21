@@ -71,32 +71,59 @@ class Detail extends HTMLElement {
       <section id="restaurantDetail" class="content">
         <div class="restaurant">
           <h2 class="restaurant__title">${this.restaurant.name}</h2>
-          <img class="lazyload restaurant__image" data-src=${CONFIG.BASE_MEDUM_IMAGE_URL + this.restaurant.pictureId} data-sizes="auto" alt=${this.restaurant.name} />
+          <picture>
+            <source class="restaurant__image" media="(max-width: 600px)" data-srcset="${CONFIG.BASE_SMALL_IMAGE_URL + this.restaurant.pictureId}" type="image/jpeg">
+            <img class="lazyload restaurant__image" data-src="${CONFIG.BASE_MEDUM_IMAGE_URL + this.restaurant.pictureId}" alt="${this.restaurant.name}" />
+          </picture>
           <div class="restaurant__info">
-              <div class="address">
+              <div id="address">
                 <p>Address</p>
-                <p>${this.restaurant.address}</p>
+                <p>${this.restaurant.address}, ${this.restaurant.city}</p>
               </div>
-              <div class="categories">
+              <div id="categories">
                 <p>Categories</p>
                 <p>
                 ${this.restaurant.categories.map((item) => (item.name)).join(', ')}
                 </p>
               </div>
-              <div class="rating">
+              <div id="rating">
                 <p>Rating</p>
                 <p>${this.restaurant.rating}</p>
+              </div>
+              <div id="description">
+                <p>Description</p>
+                <p>${this.restaurant.description}</p>
               </div>
             </div>
           </div>
         </div>
+        <div class="restaurant__menu">
+          <p class="h2">Foods</p>
+          <div class="items">
+            ${this.restaurant.menus.foods.map((item) => (
+              `
+              <p class="border rounded padding">${item.name}</p>
+              `
+            )).join('')}
+          </div>
+        </div>
+        <div class="restaurant__menu">
+          <p class="h2">Drinks</p>
+          <div class="items">
+            ${this.restaurant.menus.drinks.map((item) => (
+              `
+              <p>${item.name}</p>
+              `
+            )).join('')}
+          </div>
+        </div>
         <form class="review__form">
-        <fieldset>
-          <legend>What do you think about this restaurant?</legend>
-          <input id="inputName" class="input-field" name="name" placeholder="Your name">
-          <textarea id="inputReview" class="input-field" name="review" cols="21" rows="3" placeholder="Your thought"></textarea>
-          <input class="btn btn__submit" type="submit" value="Submit">
-        </fieldset>
+          <fieldset>
+            <legend>What do you think about this restaurant?</legend>
+            <input id="inputName" class="input-field" name="name" placeholder="Your name">
+            <textarea id="inputReview" class="input-field" name="review" cols="21" rows="3" placeholder="Your thought"></textarea>
+            <input class="btn btn__submit" type="submit" value="Submit">
+          </fieldset>
         </form>
         <div class="review">
           ${this.restaurant.customerReviews.map((item, index) => (

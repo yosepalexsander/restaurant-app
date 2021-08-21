@@ -1,47 +1,47 @@
 @use "variables" as v;
 @use "mixins" as m;
 
-  @include m.mediaQuery('xs') {
-    .nav {
-      position: fixed;
-      top: 0;
-      right: 0;
-      background-color: map-get(v.$theme-color, "primary");
-      border-radius: 6px 0 0 0;
-      width: 200px;
-      height: 100%;
-      z-index: 5;
-  
-      -webkit-transform: translate(300px, 0);
-      transform: translate(300px, 0);
-  
-      transition: transform 0.3s ease-in;
-  
-      &__item {
-        display: list-item;
-        width: 100%;
-        border-bottom: 1px solid;
-        padding: 16px;
-        text-align: left;
-      }
-  
-      &.open {
-        -webkit-transform: translate(0, 0);
-        transform: translate(0, 0);
-      }
+@include m.mediaQuery('xs') {
+  .nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: map-get(v.$theme-color, "primary");
+    border-radius: 6px 0 0 0;
+    width: 200px;
+    height: 100%;
+    z-index: 5;
+
+    -webkit-transform: translate(300px, 0);
+    transform: translate(300px, 0);
+
+    transition: transform 0.3s ease-in;
+
+    &__item {
+      display: list-item;
+      width: 100%;
+      border-bottom: 1px solid;
+      padding: 16px;
+      text-align: left;
     }
 
-    .hero__title {
-      font-weight: 600;
-      font-size: 24px;
-    }
-
-    .hero__tagline {
-      margin-top: 16px;
-      font-size: 14px;
-      font-weight: 400;
+    &.open {
+      -webkit-transform: translate(0, 0);
+      transform: translate(0, 0);
     }
   }
+
+  .hero__title {
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  .hero__tagline {
+    margin-top: 16px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
 
 @include m.mediaQuery('sm') {
   .header__menu {

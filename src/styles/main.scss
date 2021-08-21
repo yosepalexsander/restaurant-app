@@ -1,6 +1,5 @@
 @import 'variables';
 @import 'loading';
-
 * {
   padding: 0;
   margin: 0;
@@ -276,11 +275,10 @@ main {
 
   &__text {
     margin-top: 12px;
-    font-family: 'Source Sans Pro', sans-serif;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* number of lines to show */
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     &:empty {
       background-color: lightgrey;
@@ -302,7 +300,6 @@ main {
   margin: 0 auto;
   display: grid;
   width: 100%;
-  // max-width:800px;
   grid-template-columns: 1fr;
   gap: 18px 16px;
 
@@ -311,15 +308,42 @@ main {
     border-radius: 5px;
   }
   &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     & p {
-      margin-bottom: 4px;
       &:nth-of-type(1) {
+        margin-bottom: 8px;
         font-size: 18px;
         font-weight: 600;
       }
-      &:nth-of-type(2) {
-        margin-bottom: 24px;
+    }
+
+    & #description {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  &__menu {
+    width: 100%;
+    & .h2 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    & .items {
+      display: flex;
+      flex-wrap: wrap;
+      & p {
+        margin: 5px 5px 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+        color: map-get($theme-color, 'secondary');
+        background-color: map-get($theme-color, 'primary');
       }
     }
   }
@@ -473,7 +497,7 @@ footer {
   }
 }
 
-// skeleton animation
+// skeleton UI animation
 .skeleton {
   &__wave {
     overflow: hidden;

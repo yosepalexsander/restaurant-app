@@ -87,9 +87,10 @@ class ListRestaurant extends HTMLElement {
             <div id="restaurant-item-${index}" class="card">
               <a href="#/detail/${restaurant.id}">
               <div class="card__image">
-                <img id="restaurant-item-thumbnail" class="lazyload" data-src=${
-                  CONFIG.BASE_MEDUM_IMAGE_URL + restaurant.pictureId
-                } data-sizes="auto" alt=${restaurant.name}/>
+              <picture>
+                <source media="(max-width: 600px)" data-srcset="${CONFIG.BASE_SMALL_IMAGE_URL + restaurant.pictureId}" type="image/jpeg">
+                <img class="lazyload" data-src="${CONFIG.BASE_MEDUM_IMAGE_URL + restaurant.pictureId}" alt="${restaurant.name}" />
+              </picture>
                 <span class="card__label">${restaurant.city}</span>
               </div>
               <div id="restaurant-item-content" class="card__content">
