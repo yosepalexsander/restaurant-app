@@ -1,0 +1,14 @@
+$theme-color: (
+  'primary': #fed049,
+  'secondary': #282846,
+  'textSecondary': #5c5c5c,
+  'textPrimary': #2a2a2a,
+);
+
+$breakpoints: (
+  'xs': (max-width: 600px),
+  'sm':  (min-width: 600px),
+  'md': (min-width: 900px),
+  'lg':  (min-width: 1200px),
+  'xl': (min-width: 1800px)
+) !default;

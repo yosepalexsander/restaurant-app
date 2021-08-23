@@ -1,0 +1,521 @@
+@import 'variables';
+@import 'loading';
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html::-webkit-scrollbar {
+  width: 10px;
+  background: transparent;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: map-get($theme-color, 'secondary');
+    border-radius: 5px;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  color: map-get($theme-color, 'textPrimary');
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+img {
+  width: 100%;
+  object-fit: cover;
+}
+
+a {
+  color: map-get($theme-color, 'secondary');
+  text-decoration: none;
+
+  &.link:focus {
+    color: map-get($theme-color, 'primary');
+    background-color: map-get($theme-color, 'secondary');
+    outline: 0;
+    text-align: center;
+  }
+}
+
+ul > li {
+  list-style: none;
+}
+
+.header {
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 70px;
+  padding: 0 24px;
+  transition: min-height 0.3s ease-out;
+  background-color: rgb(250, 250, 250);
+  color: map-get($theme-color, 'secondary');
+  box-shadow: 0 2px 4px 2px #91909071;
+  z-index: 10;
+  &__brand {
+    flex: 1 0 auto;
+    line-height: 90px;
+  }
+
+  &__menu {
+    font-weight: 600;
+    width: 50px;
+    height: 50px;
+    font-size: 45px;
+    line-height: 50px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.nav {
+  &__item {
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+    padding: 0 12px;
+    text-transform: uppercase;
+  
+    & a {
+      display: inline-block;
+      vertical-align: middle;
+      width: 90px;
+      font-weight: 600;
+      line-height: 90px;
+      transition-property: background-color;
+      transition-duration: 0.3s;
+      transition-timing-function: ease-out;
+    }
+  }
+}
+
+/* hero */
+
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  min-height: 380px;
+  padding: 0 24px;
+  text-align: center;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(250, 250, 250, 0.9),
+      rgba(250, 250, 250, 0.6)
+    );
+  background-position: center;
+  background-size: cover;
+
+  &__img {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  &__inner {
+    margin: 0 auto;
+    max-width: 800px;
+    
+  }
+  
+  &__title {
+    font-weight: 900;
+    font-size: 32px;
+    color: map-get($theme-color, 'secondary');
+  }
+
+  &__tagline {
+    margin-top: 16px;
+    font-size: 18px;
+    font-weight: 600;
+    color: map-get($theme-color, 'secondary');
+  }
+}
+
+/*
+* main 
+*/
+
+main {
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 
+* content 
+*/
+.content {
+  padding: 32px;
+  &__label {
+    text-align: center;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 1.5;
+  }
+
+  &#restaurantDetail {
+    > * {
+      max-width: 800px;
+      margin: 0 auto 16px;
+    }
+  }
+
+  & .not__found {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    & p, a {
+      margin-bottom: 10px;
+    }
+    & a {
+      font-weight: 600;
+    }
+  }
+}
+
+.restaurants {
+  margin-top: 32px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+
+.card {
+  overflow: hidden;
+  border: 1px solid map-get($theme-color, 'secondary');
+  border-radius: 5px;
+  transition-property: transform;
+  transition-duration: 0.3s;
+  transition-timing-function: linear;
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 1px 2px 3px 3px #424242af;
+  }
+
+  & a {
+    color: #1d1d1d;
+  }
+
+  &__image {
+    position: relative;
+
+    & img {
+      height: 250px;
+      object-fit: cover;
+    }
+
+    & span {
+      position: absolute;
+      top: 10px;
+      left: 0;
+      background-color: map-get($theme-color, 'secondary');
+      border-radius: 0 5px 5px 0;
+      color: map-get($theme-color, 'primary');
+      padding: 16px 24px 16px 16px;
+      z-index: 2;
+    }
+
+    &:empty {
+      background-color: lightgrey;
+      height: 250px;
+    }
+  }
+
+  &__content {
+    padding: 16px 24px;
+  }
+
+  &__header {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-weight: 600;
+    line-height: 1.5;
+    margin-top: 12px;
+
+    &:empty {
+      display: block;
+      width: 40%;
+      border-radius: 5px;
+      background-color: lightgrey;
+      &:before {
+        content: "\00a0";
+      }
+    }
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 20px;
+    margin-top: 12px;
+    &:empty {
+      display: block;
+      width: 70%;
+      border-radius: 5px;
+      background-color: lightgrey;
+      &:before {
+        content: "\00a0";
+      }
+    }
+  }
+
+  &__text {
+    margin-top: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    &:empty {
+      background-color: lightgrey;
+      transform: scale(1, 0.7);
+      margin-top: 8px;
+      border-radius: 5px;
+      &:nth-last-of-type(1) {
+        width: 70%;
+      }
+
+      &:before {
+        content: "\00a0";
+      }
+    }
+  }
+}
+/* detail restaurant */
+.restaurant {
+  margin: 0 auto;
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+  gap: 18px 16px;
+
+  &__image {
+    width: 100%;
+    border-radius: 5px;
+  }
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    & p {
+      &:nth-of-type(1) {
+        margin-bottom: 8px;
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+
+    & #description {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    }
+  }
+
+  &__menu {
+    width: 100%;
+    & .h2 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+    & .items {
+      display: flex;
+      flex-wrap: wrap;
+      & p {
+        margin: 5px 5px 5px 0;
+        padding: 10px;
+        border-radius: 5px;
+        color: map-get($theme-color, 'secondary');
+        background-color: map-get($theme-color, 'primary');
+      }
+    }
+  }
+}
+
+/* review */
+.review {
+  height: 450px;
+  overflow: auto;
+
+  &__form {
+    > .input-field {
+      margin: 4px 0;
+    }
+
+    & fieldset {
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      border-radius: 5px;
+      border: 2px solid #4242425d;
+
+      & legend {
+        font-weight: 600;
+      }
+    }
+
+  }
+  &__item {
+    margin: 10px 0;
+    padding: 8px 16px;
+    border: 2px solid #4242425d;
+    border-radius: 5px;
+  }
+
+  &__date {
+    font-size: 14px;
+    font-weight: lighter;
+    color: map-get($theme-color, 'textSecondary');
+    margin-bottom: 12px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    background: transparent;
+  }
+  /* Optional: show position indicator in red */
+  &::-webkit-scrollbar-thumb {
+    background: map-get($theme-color, 'secondary');
+    border-radius: 10px;
+  }
+}
+
+
+// form input
+
+form {
+  & .input-field {
+    font-size: 16px;
+    width: 150px;
+    height: 150px;
+    padding: 8px 14px;
+    margin-top: 8px;
+    border: 2px solid #4242425d;
+    background-color: rgb(243, 243, 243);
+    background-clip: padding-box;
+    border-radius: 5px;
+    transition-duration: 0.2s;
+    transition-property: all;
+    transition-timing-function: ease-in-out;
+  
+    &:focus {
+      outline: 0;
+      border: 2px solid rgb(138, 138, 138);
+      border-radius: 10px;
+      box-shadow: 0 3px 10px -1px rgba(0, 0, 0, 0.25);
+    }
+  
+    +textarea {
+      resize: none;
+    }
+  }
+}
+
+/* footer */
+
+footer {
+  border-top: 1px solid #424242;
+  font-weight: 600;
+  padding: 24px;
+  text-align: center;
+
+}
+
+/* skip link */
+
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background-color: map-get($theme-color, 'secondary');
+  color: map-get($theme-color, 'primary');
+  padding: 8px;
+  z-index: 100;
+
+  &:focus {
+    top: 0;
+    outline: 0;
+  }
+}
+
+// icon
+.icon-gold {
+  color: map-get($theme-color, 'primary');
+}
+
+// Button
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+  &__like {
+    font-size: 18px;
+    position: fixed;
+    bottom: 16px;
+    right: 16px;
+    background-color: map-get($theme-color, "primary" );
+    color: map-get($theme-color, "secondary" );
+    border-radius: 50%;
+    width: 55px;
+    height: 55px;
+
+    & i {
+      pointer-events: none;
+    }
+  }
+
+  &__submit {
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: map-get($theme-color, "secondary" );
+    background-color: map-get($theme-color, "primary" );
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+  }
+}
+
+// skeleton UI animation
+.skeleton {
+  &__wave {
+    overflow: hidden;
+    position: relative;
+    &::after {
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      content: "";
+      position: absolute;
+      animation: wave 1.6s linear 0.5s infinite;
+      transform: translateX(-100%);
+      background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.08), transparent);
+    }
+
+  }
+  @keyframes wave {
+    to  {transform: translateX(100%)}
+  }
+}

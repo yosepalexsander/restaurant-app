@@ -1,0 +1,13 @@
+@import "variables";
+
+@mixin mediaQuery($breakpoint) {
+  @media screen and #{inspect(map-get($breakpoints, $breakpoint))} { @content; }
+}
+
+
+@mixin gridDisplay($row: '', $column: 1fr 1fr, $grid-gap: 8px) {
+  display: grid;
+  grid-template-columns: $column;
+  gap: $grid-gap;
+}
+

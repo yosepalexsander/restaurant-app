@@ -1,50 +1,24 @@
-import "regenerator-runtime"; /* for async await transpile */
-import "../styles/main.css";
-import "../styles/responsive.css";
-import Data from "../DATA.json";
+import 'regenerator-runtime'; /* for async await transpile */
+import '../styles/main.scss';
+import '../styles/responsive.scss';
+import './views/components/AppBar';
+import App from './views/app';
+import swRegister from './utils/swRegister';
 
-const mainElm = document.querySelector("main");
-const menuElm = document.querySelector("#menu");
-const heroElm = document.querySelector(".hero");
-const drawerElm = document.querySelector("#drawer");
-const restaurantItemELm = document.querySelector(".restaurants");
+import 'lazysizes';
+import 'lazysizes/plugins/parent-fit/ls.parent-fit';
 
-window.addEventListener("DOMContentLoaded", function (event) {
-  mainElm.addEventListener("click", function (event) {
-    drawerElm.classList.remove("open");
-  });
+const app = new App({
+  button: document.getElementById('menuButton'),
+  drawer: document.getElementById('drawer'),
+  content: document.getElementById('app'),
+});
 
-  menuElm.addEventListener("click", function (event) {
-    drawerElm.classList.toggle("open");
-    event.stopPropagation();
-  });
+window.addEventListener('hashchange', async () => {
+  await app.renderPage();
+});
 
-  heroElm.addEventListener("click", function (event) {
-    drawerElm.classList.remove("open");
-  });
-
-  restaurantItemELm.innerHTML = `
-   ${Data.restaurants
-     .map((restaurant) => {
-       return `
-       <article id="restaurant-item" class="card">
-        <div class="card-image">
-          <img id="restaurant-item-thumbnail" src=${restaurant.pictureId} alt=${
-         restaurant.name
-       }/>
-          <span class="card-label">${restaurant.city}</span>
-        </div>
-        <div id="restaurant-item-content" class="card-content">
-        <p class="card-header">Rating: ${restaurant.rating}</p>
-            <p class="card-title">${restaurant.name}</p>
-            <p class="card-description">${restaurant.description.substr(
-              0,
-              150
-            )}...</p>
-        </div>
-       </article>
-       `;
-     })
-     .join("")}  
-  `;
+window.addEventListener('load', async () => {
+  await app.renderPage();
+  await swRegister();
 });
