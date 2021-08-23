@@ -90,6 +90,9 @@ module.exports = {
       swSrc: './src/scripts/serviceWorker.js',
       swDest: 'serviceWorker.js',
     }),
-    new BundleAnalyzer(),
+    new BundleAnalyzer({
+      analyzerMode: 'static',
+      openAnalyzer: false,
+    }),
   ],
 };

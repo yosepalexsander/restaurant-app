@@ -36,7 +36,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^5.0.0",
     "mini-css-extract-plugin": "^2.2.0",
-    "puppeteer": "^10.2.0",
+    "puppeteer": "^8.0.0",
     "purgecss-webpack-plugin": "^4.0.3",
     "sass": "^1.32.11",
     "sass-loader": "^11.0.1",
